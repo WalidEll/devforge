@@ -38,11 +38,7 @@ jobs:
         # Outputs a fully-static site to ./out
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: devforge          # must match the Pages project name in Cloudflare dashboard
-          directory: out                 # Next.js static export directory
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}   # posts preview URL as a PR comment
-          wranglerVersion: "3"
+        run: npx wrangler@3 pages deploy out --project-name=devforge --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
