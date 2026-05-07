@@ -5,7 +5,7 @@ const SITE_NAME = "DevForge";
 const SITE_URL = "https://devforge.tools";
 
 export function generateToolMetadata(tool: Tool): Metadata {
-  const title = `${tool.name} — Free Online | ${SITE_NAME}`;
+  const title = `${tool.name} — Free Online`;
   const description = tool.description;
 
   return {

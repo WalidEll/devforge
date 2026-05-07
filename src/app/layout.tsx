@@ -16,17 +16,41 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "DevForge — Free Online Developer Tools",
+    default: "DevForge — Free Online Developer Tools & Tutorials",
     template: "%s | DevForge",
   },
   description:
-    "Fast, free developer tools: JSON formatter, Base64 encoder, JWT decoder, regex tester, and more. No signup, no tracking — just paste and go.",
+    "Free online developer tools and IT tutorials. JSON formatter, Base64 encoder, JWT decoder, regex tester, UUID generator, and 30+ guides on networking, security, DevOps, and more. No signup required.",
   keywords:
-    "developer tools, json formatter, base64 encode, jwt decoder, regex tester, online tools, free tools",
+    "developer tools, json formatter, base64 encode, jwt decoder, regex tester, uuid generator, online tools, free tools, developer tutorials, IT guides, devops tutorials",
   metadataBase: new URL("https://devforge.tools"),
   openGraph: {
     siteName: "DevForge",
     type: "website",
+    url: "https://devforge.tools",
+    title: "DevForge — Free Online Developer Tools & Tutorials",
+    description:
+      "Free online developer tools and IT tutorials. JSON formatter, Base64 encoder, JWT decoder, and more. No signup required.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DevForge — Free Online Developer Tools & Tutorials",
+    description:
+      "Free online developer tools and IT tutorials. No signup required.",
+  },
+  alternates: {
+    canonical: "https://devforge.tools",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -50,6 +74,24 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col bg-[var(--background)] text-[var(--foreground)]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "DevForge",
+              url: "https://devforge.tools",
+              description:
+                "Free online developer tools and IT tutorials. No signup required.",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://devforge.tools/tutorials?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
