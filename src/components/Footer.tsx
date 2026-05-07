@@ -13,6 +13,9 @@ export default function Footer() {
             . Free developer tools.
           </div>
           <div className="flex gap-6 text-sm text-gray-600 dark:text-gray-400">
+            <Link href="/tutorials" className="hover:text-gray-900 dark:hover:text-white">
+              Tutorials
+            </Link>
             <Link href="/about" className="hover:text-gray-900 dark:hover:text-white">
               About
             </Link>

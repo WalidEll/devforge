@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { tools } from "@/lib/tools";
+import { tutorials } from "@/lib/tutorials";
 
 const THEME_EVENT = "theme-change";
 
@@ -63,25 +64,49 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const filtered = query.trim()
+  const q = query.trim().toLowerCase();
+  const filteredTools = q
     ? tools.filter(
         (t) =>
-          t.name.toLowerCase().includes(query.toLowerCase()) ||
-          t.keywords.some((k) => k.toLowerCase().includes(query.toLowerCase()))
+          t.name.toLowerCase().includes(q) ||
+          t.keywords.some((k) => k.toLowerCase().includes(q))
+      )
+    : [];
+  const filteredTutorials = q
+    ? tutorials.filter(
+        (t) =>
+          t.title.toLowerCase().includes(q) ||
+          t.keywords.some((k) => k.toLowerCase().includes(q))
       )
     : [];
 
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
-          <span className="text-blue-600">Dev</span>Forge
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
+            <span className="text-blue-600">Dev</span>Forge
+          </Link>
+          <div className="hidden items-center gap-4 text-sm font-medium sm:flex">
+            <Link
+              href="/"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            >
+              Tools
+            </Link>
+            <Link
+              href="/tutorials"
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            >
+              Tutorials
+            </Link>
+          </div>
+        </div>
 
         <div ref={ref} className="relative hidden sm:block">
           <input
             type="text"
-            placeholder="Search tools..."
+            placeholder="Search tools & tutorials..."
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
@@ -90,27 +115,60 @@ export default function Navbar() {
             onFocus={() => query.trim() && setOpen(true)}
             className="w-64 rounded-lg border border-gray-300 bg-gray-50 px-3 py-1.5 text-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
           />
-          {open && filtered.length > 0 && (
+          {open && (filteredTools.length > 0 || filteredTutorials.length > 0) && (
             <div className="absolute top-full mt-1 w-80 rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900">
-              {filtered.slice(0, 8).map((tool) => (
-                <Link
-                  key={tool.slug}
-                  href={`/${tool.slug}`}
-                  onClick={() => {
-                    setOpen(false);
-                    setQuery("");
-                  }}
-                  className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded bg-gray-100 font-mono text-xs font-bold text-gray-600 dark:bg-gray-800 dark:text-gray-400">
-                    {tool.icon}
-                  </span>
-                  <div>
-                    <div className="font-medium">{tool.name}</div>
-                    <div className="text-xs text-gray-500">{tool.shortDescription}</div>
+              {filteredTools.length > 0 && (
+                <>
+                  <div className="px-4 py-1.5 text-xs font-semibold text-gray-400 dark:text-gray-500">
+                    Tools
                   </div>
-                </Link>
-              ))}
+                  {filteredTools.slice(0, 5).map((tool) => (
+                    <Link
+                      key={tool.slug}
+                      href={`/${tool.slug}`}
+                      onClick={() => {
+                        setOpen(false);
+                        setQuery("");
+                      }}
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded bg-gray-100 font-mono text-xs font-bold text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                        {tool.icon}
+                      </span>
+                      <div>
+                        <div className="font-medium">{tool.name}</div>
+                        <div className="text-xs text-gray-500">{tool.shortDescription}</div>
+                      </div>
+                    </Link>
+                  ))}
+                </>
+              )}
+              {filteredTutorials.length > 0 && (
+                <>
+                  <div className="px-4 py-1.5 text-xs font-semibold text-gray-400 dark:text-gray-500">
+                    Tutorials
+                  </div>
+                  {filteredTutorials.slice(0, 5).map((tut) => (
+                    <Link
+                      key={tut.slug}
+                      href={`/tutorials/${tut.slug}`}
+                      onClick={() => {
+                        setOpen(false);
+                        setQuery("");
+                      }}
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 font-mono text-xs font-bold text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+                        {tut.icon}
+                      </span>
+                      <div>
+                        <div className="font-medium">{tut.title}</div>
+                        <div className="text-xs text-gray-500">{tut.readingTime} min read</div>
+                      </div>
+                    </Link>
+                  ))}
+                </>
+              )}
             </div>
           )}
         </div>
