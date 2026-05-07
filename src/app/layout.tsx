@@ -67,6 +67,12 @@ export default function RootLayout({
     >
       <head>
         <meta name="google-adsense-account" content="ca-pub-6534388008809310" />
+        {/* Request non-personalized ads before AdSense loads to minimize third-party cookies */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "(window.adsbygoogle=window.adsbygoogle||[]).requestNonPersonalizedAds=1;",
+          }}
+        />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6534388008809310"
