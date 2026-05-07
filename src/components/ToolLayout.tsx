@@ -49,6 +49,19 @@ export default function ToolLayout({ tool, children, faqs, howToUse, useCases }:
 
             <AdUnit slot="BELOW_TOOL" format="rectangle" className="mt-8" />
 
+            <p className="mt-4 text-center text-sm text-gray-400 dark:text-gray-500">
+              DevForge is free and ad-supported.{" "}
+              <a
+                href="https://ko-fi.com/devforge"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-600 hover:underline dark:text-amber-400"
+              >
+                Buy me a coffee
+              </a>{" "}
+              if it saved you time.
+            </p>
+
             {howToUse && (
               <section className="mt-10">
                 <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
