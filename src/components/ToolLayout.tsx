@@ -52,7 +52,7 @@ export default function ToolLayout({ tool, children, faqs, howToUse, useCases }:
             <p className="mt-4 text-center text-sm text-gray-400 dark:text-gray-500">
               DevForge is free and ad-supported.{" "}
               <a
-                href="https://ko-fi.com/devforge"
+                href="https://ko-fi.com/devforgetools"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-600 hover:underline dark:text-amber-400"

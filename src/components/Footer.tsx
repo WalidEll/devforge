@@ -14,7 +14,7 @@ export default function Footer() {
               . Free developer tools.
             </span>
             <a
-              href="https://ko-fi.com/devforge"
+              href="https://ko-fi.com/devforgetools"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block rounded px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800 hover:bg-amber-200 dark:bg-amber-900/30 dark:text-amber-300 transition-colors"

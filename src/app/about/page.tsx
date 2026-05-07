@@ -45,7 +45,7 @@ export default function AboutPage() {
           <p className="text-gray-700 dark:text-gray-300">
             DevForge is free and always will be. If it saves you time, you can{" "}
             <a
-              href="https://ko-fi.com/devforge"
+              href="https://ko-fi.com/devforgetools"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-amber-700 underline hover:text-amber-900 dark:text-amber-400"
