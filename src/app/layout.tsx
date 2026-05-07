@@ -66,7 +66,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <meta name="google-adsense-account" content="ca-pub-6534388008809310" />
+        <meta name="google-adsense-account" content="ca-pub-2011454284047011" />
         {/* Request non-personalized ads before AdSense loads to minimize third-party cookies */}
         <script
           dangerouslySetInnerHTML={{
@@ -75,7 +75,7 @@ export default function RootLayout({
         />
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6534388008809310"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2011454284047011"
           crossOrigin="anonymous"
         />
       </head>

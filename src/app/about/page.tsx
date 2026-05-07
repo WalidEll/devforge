@@ -38,6 +38,24 @@ export default function AboutPage() {
           DevForge is supported by Google AdSense ads. We keep them minimal and non-intrusive — never between you and the tool. If you find the ads useful, clicking through supports keeping these tools free.
         </p>
 
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-800 dark:bg-amber-950/20">
+          <h2 className="mb-3 text-lg font-semibold text-amber-900 dark:text-amber-200">
+            ☕ Support DevForge
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            DevForge is free and always will be. If it saves you time, you can{" "}
+            <a
+              href="https://ko-fi.com/devforgetools"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-amber-700 underline hover:text-amber-900 dark:text-amber-400"
+            >
+              buy me a coffee on Ko-fi
+            </a>
+            . No account required — takes 30 seconds.
+          </p>
+        </div>
+
         <div className="rounded-xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-800 dark:bg-blue-950">
           <h3 className="mb-3 font-semibold text-blue-900 dark:text-blue-300">Found a bug or have a request?</h3>
           <p className="text-sm text-blue-800 dark:text-blue-400">
