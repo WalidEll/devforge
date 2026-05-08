@@ -2,11 +2,21 @@
 
 import { useEffect, useRef } from "react";
 
-const ADSENSE_SLOT_IDS = {
-  TOP_LEADERBOARD: process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_LEADERBOARD,
-  BELOW_TOOL: process.env.NEXT_PUBLIC_ADSENSE_SLOT_BELOW_TOOL,
-  SIDEBAR_RECT: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR_RECT,
-} as const;
+const CLIENT = "ca-pub-2011454284047011";
+
+// Each named position first checks its own slot var, then falls back to the
+// single NEXT_PUBLIC_ADSENSE_SLOT — so you only need ONE ad unit to get started.
+const NAMED_SLOTS: Record<string, string | undefined> = {
+  TOP_LEADERBOARD:
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_LEADERBOARD ??
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT,
+  BELOW_TOOL:
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT_BELOW_TOOL ??
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT,
+  SIDEBAR_RECT:
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR_RECT ??
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT,
+};
 
 interface AdUnitProps {
   slot: string;
@@ -20,13 +30,19 @@ declare global {
   }
 }
 
-function resolveAdSlot(slot: string) {
-  if (/^\d+$/.test(slot)) {
-    return slot;
-  }
-
-  return ADSENSE_SLOT_IDS[slot as keyof typeof ADSENSE_SLOT_IDS];
+function resolveAdSlot(slot: string): string | undefined {
+  if (/^\d+$/.test(slot)) return slot; // already a numeric slot ID
+  return NAMED_SLOTS[slot as keyof typeof NAMED_SLOTS];
 }
+
+const IS_DEV = process.env.NODE_ENV === "development";
+
+const PLACEHOLDER_HEIGHT: Record<string, number> = {
+  horizontal: 90,
+  rectangle: 250,
+  vertical: 280,
+  auto: 120,
+};
 
 export default function AdUnit({ slot, format = "auto", className = "" }: AdUnitProps) {
   const adRef = useRef<HTMLModElement>(null);
@@ -40,12 +56,22 @@ export default function AdUnit({ slot, format = "auto", className = "" }: AdUnit
       (window.adsbygoogle = window.adsbygoogle || []).push({});
       pushed.current = true;
     } catch {
-      // AdSense not loaded yet or ad blocker active
+      // AdSense not loaded yet or blocked by an ad blocker
     }
-  }, []);
+  }, [adSlot]);
 
   if (!adSlot) {
-    return null;
+    if (!IS_DEV) return null;
+    // Dev-only placeholder so ad positions are visible during local development
+    return (
+      <div
+        className={`ad-container my-4 flex items-center justify-center rounded border border-dashed border-gray-300 bg-gray-50 text-xs text-gray-400 dark:border-gray-700 dark:bg-gray-900/50 dark:text-gray-600 ${className}`}
+        style={{ minHeight: PLACEHOLDER_HEIGHT[format] ?? 120 }}
+        title="Set NEXT_PUBLIC_ADSENSE_SLOT in .env.local to see real ads"
+      >
+        AdSense · {slot} · {format}
+      </div>
+    );
   }
 
   return (
@@ -54,7 +80,7 @@ export default function AdUnit({ slot, format = "auto", className = "" }: AdUnit
         ref={adRef}
         className="adsbygoogle"
         style={{ display: "block" }}
-        data-ad-client="ca-pub-2011454284047011"
+        data-ad-client={CLIENT}
         data-ad-slot={adSlot}
         data-ad-format={format}
         data-full-width-responsive="true"
