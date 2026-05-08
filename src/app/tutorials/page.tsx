@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { tutorials } from "@/lib/tutorials";
+import { getAllTutorials } from "@/lib/all-tutorials";
 import TutorialSearch from "@/components/TutorialSearch";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function TutorialsPage() {
         </p>
       </section>
 
-      <TutorialSearch tutorials={tutorials} />
+      <TutorialSearch tutorials={getAllTutorials()} />
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { categories, getToolsByCategory, tools } from "@/lib/tools";
 import type { ToolCategory } from "@/lib/tools";
-import { tutorials } from "@/lib/tutorials";
+import { getAllTutorials } from "@/lib/all-tutorials";
 import ToolCard from "@/components/ToolCard";
 import TutorialCard from "@/components/TutorialCard";
 
 const categoryOrder: ToolCategory[] = ["formatters", "encoders", "generators", "converters"];
 
 export default function HomePage() {
-  const featuredTutorials = tutorials.slice(0, 3);
+  const featuredTutorials = getAllTutorials().slice(0, 3);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
