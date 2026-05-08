@@ -1,4 +1,4 @@
-export type ToolCategory = "formatters" | "encoders" | "generators" | "converters" | "validators";
+export type ToolCategory = "formatters" | "encoders" | "generators" | "converters" | "validators" | "networking";
 
 export interface Tool {
   name: string;
@@ -31,6 +31,10 @@ export const categories: Record<ToolCategory, { label: string; description: stri
   validators: {
     label: "Validators",
     description: "Validate formats, expressions, and data",
+  },
+  networking: {
+    label: "Networking",
+    description: "IP, MAC, and network utility tools",
   },
 };
 
@@ -433,6 +437,73 @@ export const tools: Tool[] = [
     keywords: ["qr code generator", "qr code maker", "generate qr code", "qr code online", "qr code free"],
     icon: "QR",
     relatedSlugs: ["url-encode-decode", "base64-encode-decode", "uuid-generator"],
+  },
+  // --- Networking ---
+  {
+    name: "IPv4 Subnet Calculator",
+    slug: "ipv4-subnet-calculator",
+    description:
+      "Calculate subnet mask, network address, broadcast address, host range, and number of usable hosts from any IPv4 CIDR notation.",
+    shortDescription: "Calculate IPv4 subnets from CIDR",
+    category: "networking",
+    keywords: ["subnet calculator", "cidr", "ipv4", "network mask", "subnetting"],
+    icon: "SUB",
+    relatedSlugs: ["ipv4-address-converter", "ipv4-range-expander"],
+  },
+  {
+    name: "IPv4 Address Converter",
+    slug: "ipv4-address-converter",
+    description:
+      "Convert an IPv4 address between dotted decimal, binary, hexadecimal, and 32-bit integer representations instantly.",
+    shortDescription: "Convert IPv4 between decimal, binary, hex",
+    category: "networking",
+    keywords: ["ipv4 converter", "ip address binary", "ip hex", "dotted decimal", "ip integer"],
+    icon: "IP4",
+    relatedSlugs: ["ipv4-subnet-calculator", "ipv4-range-expander"],
+  },
+  {
+    name: "IPv4 Range Expander",
+    slug: "ipv4-range-expander",
+    description:
+      "Expand a CIDR block or an IP start–end range into a list of individual IPv4 addresses. Supports ranges up to 1,024 addresses.",
+    shortDescription: "Expand CIDR or IP range to address list",
+    category: "networking",
+    keywords: ["ip range expander", "cidr expand", "ipv4 range", "list ip addresses", "ip block"],
+    icon: "RNG",
+    relatedSlugs: ["ipv4-subnet-calculator", "ipv4-address-converter"],
+  },
+  {
+    name: "MAC Address Lookup",
+    slug: "mac-address-lookup",
+    description:
+      "Look up the vendor or manufacturer for any MAC address using the IEEE OUI database. Supports colon, dash, and dot-separated formats.",
+    shortDescription: "Look up MAC address vendor/OUI",
+    category: "networking",
+    keywords: ["mac address lookup", "oui lookup", "mac vendor", "manufacturer lookup", "ieee oui"],
+    icon: "OUI",
+    relatedSlugs: ["mac-address-generator", "ipv4-subnet-calculator"],
+  },
+  {
+    name: "MAC Address Generator",
+    slug: "mac-address-generator",
+    description:
+      "Generate random MAC addresses with configurable separator, case, unicast/multicast, and locally administered address flags.",
+    shortDescription: "Generate random MAC addresses",
+    category: "networking",
+    keywords: ["mac address generator", "random mac", "ethernet address", "mac address format", "oui generator"],
+    icon: "MAC",
+    relatedSlugs: ["mac-address-lookup"],
+  },
+  {
+    name: "IPv6 ULA Generator",
+    slug: "ipv6-ula-generator",
+    description:
+      "Generate random IPv6 Unique Local Addresses (ULA) per RFC 4193. Produces a /48 prefix with global ID and optional /64 subnet.",
+    shortDescription: "Generate IPv6 ULA prefixes (RFC 4193)",
+    category: "networking",
+    keywords: ["ipv6 ula generator", "unique local address", "fc00", "fd00", "rfc 4193", "ipv6 prefix"],
+    icon: "IP6",
+    relatedSlugs: ["ipv4-subnet-calculator", "mac-address-generator"],
   },
   // --- Validators ---
   {

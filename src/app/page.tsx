@@ -5,7 +5,7 @@ import { getAllTutorials } from "@/lib/all-tutorials";
 import ToolCard from "@/components/ToolCard";
 import TutorialCard from "@/components/TutorialCard";
 
-const categoryOrder: ToolCategory[] = ["formatters", "encoders", "generators", "converters"];
+const categoryOrder: ToolCategory[] = ["formatters", "encoders", "generators", "converters", "validators", "networking"];
 
 export default function HomePage() {
   const featuredTutorials = getAllTutorials().slice(0, 3);
