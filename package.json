@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sentry/nextjs": "^10.52.0",
+    "gray-matter": "^4.0.3",
     "js-beautify": "^1.15.4",
     "next": "16.2.4",
     "qrcode": "^1.5.4",

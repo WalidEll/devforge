@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { tutorials, getTutorialBySlug, getRelatedTutorials, tutorialCategories } from "@/lib/tutorials";
+import { tutorialCategories } from "@/lib/tutorials";
+import type { Tutorial } from "@/lib/tutorials";
+import { getAllTutorials } from "@/lib/all-tutorials";
 import { getToolBySlug } from "@/lib/tools";
 import type { Tool } from "@/lib/tools";
 import AdUnit from "@/components/AdUnit";
@@ -13,12 +15,12 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return tutorials.map((t) => ({ slug: t.slug }));
+  return getAllTutorials().map((t) => ({ slug: t.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const tutorial = getTutorialBySlug(slug);
+  const tutorial = getAllTutorials().find((t) => t.slug === slug);
   if (!tutorial) return {};
 
   return {
@@ -99,10 +101,13 @@ function renderBody(body: string) {
 
 export default async function TutorialPage({ params }: PageProps) {
   const { slug } = await params;
-  const tutorial = getTutorialBySlug(slug);
+  const allTutorials = getAllTutorials();
+  const tutorial = allTutorials.find((t) => t.slug === slug);
   if (!tutorial) notFound();
 
-  const related = getRelatedTutorials(slug);
+  const related = (tutorial.relatedSlugs ?? [])
+    .map((s) => allTutorials.find((t) => t.slug === s))
+    .filter(Boolean) as Tutorial[];
   const cat = tutorialCategories[tutorial.category];
   const linkedTools = (tutorial.toolSlugs ?? [])
     .map((s) => getToolBySlug(s))
