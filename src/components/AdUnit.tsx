@@ -6,16 +6,15 @@ const CLIENT = "ca-pub-2011454284047011";
 
 // Each named position first checks its own slot var, then falls back to the
 // single NEXT_PUBLIC_ADSENSE_SLOT — so you only need ONE ad unit to get started.
+const DEFAULT_SLOT = process.env.NEXT_PUBLIC_ADSENSE_SLOT ?? "1716663113";
+
 const NAMED_SLOTS: Record<string, string | undefined> = {
   TOP_LEADERBOARD:
-    process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_LEADERBOARD ??
-    process.env.NEXT_PUBLIC_ADSENSE_SLOT,
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_LEADERBOARD ?? DEFAULT_SLOT,
   BELOW_TOOL:
-    process.env.NEXT_PUBLIC_ADSENSE_SLOT_BELOW_TOOL ??
-    process.env.NEXT_PUBLIC_ADSENSE_SLOT,
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT_BELOW_TOOL ?? DEFAULT_SLOT,
   SIDEBAR_RECT:
-    process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR_RECT ??
-    process.env.NEXT_PUBLIC_ADSENSE_SLOT,
+    process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR_RECT ?? DEFAULT_SLOT,
 };
 
 interface AdUnitProps {
