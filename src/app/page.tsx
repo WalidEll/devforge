@@ -17,7 +17,7 @@ export default function HomePage() {
           Free Developer Tools &amp; Tutorials
         </h1>
         <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-          {tools.length} fast, free utilities and {tutorials.length} in-depth IT guides.
+          Fast, free utilities and in-depth IT guides.
           No signup, no tracking — just paste and go.
         </p>
       </section>
