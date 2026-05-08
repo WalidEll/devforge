@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { tutorials, getTutorialBySlug, getRelatedTutorials, tutorialCategories } from "@/lib/tutorials";
+import { getToolBySlug } from "@/lib/tools";
+import type { Tool } from "@/lib/tools";
 import AdUnit from "@/components/AdUnit";
 import TutorialCard from "@/components/TutorialCard";
+import ToolCard from "@/components/ToolCard";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -101,6 +104,9 @@ export default async function TutorialPage({ params }: PageProps) {
 
   const related = getRelatedTutorials(slug);
   const cat = tutorialCategories[tutorial.category];
+  const linkedTools = (tutorial.toolSlugs ?? [])
+    .map((s) => getToolBySlug(s))
+    .filter(Boolean) as Tool[];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -189,6 +195,22 @@ export default async function TutorialPage({ params }: PageProps) {
                 </section>
               ))}
             </div>
+
+            {linkedTools.length > 0 && (
+              <section className="mt-10 rounded-xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+                <h2 className="mb-1 text-lg font-bold text-gray-900 dark:text-white">
+                  Try it on DevForge
+                </h2>
+                <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                  Free online tools related to this tutorial — no signup required.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {linkedTools.map((tool) => (
+                    <ToolCard key={tool.slug} tool={tool} />
+                  ))}
+                </div>
+              </section>
+            )}
 
             <AdUnit slot="BELOW_TOOL" format="rectangle" className="mt-8" />
 
