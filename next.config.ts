@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,    // next/image optimization requires a server; we're fully static
   },
+  turbopack: {
+    resolveAlias: {
+      tailwindcss: "./node_modules/tailwindcss",
+    },
+  },
 };
 
 export default withSentryConfig(nextConfig, {
