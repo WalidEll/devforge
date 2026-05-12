@@ -13,6 +13,7 @@ keywords:
   - server-sent events
 icon: "WS"
 readingTime: 8
+date: "2026-05-08"
 relatedSlugs:
   - rest-api-design-basics
   - http-status-codes-explained

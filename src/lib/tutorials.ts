@@ -28,6 +28,7 @@ export interface Tutorial {
   sections: TutorialSection[];
   relatedSlugs: string[];
   toolSlugs?: string[];
+  date: string; // ISO format YYYY-MM-DD
 }
 
 export const tutorialCategories: Record<
@@ -83,6 +84,7 @@ export const tutorials: Tutorial[] = [
     icon: "DNS",
     readingTime: 8,
     relatedSlugs: ["http-status-codes-explained", "ssl-tls-handshake"],
+    date: "2024-01-01",
     sections: [
       {
         heading: "What is DNS?",
@@ -119,6 +121,7 @@ export const tutorials: Tutorial[] = [
     icon: "HTTP",
     readingTime: 10,
     relatedSlugs: ["how-dns-works", "rest-api-design-basics"],
+    date: "2024-01-05",
     sections: [
       {
         heading: "How Status Codes Work",
@@ -153,6 +156,7 @@ export const tutorials: Tutorial[] = [
     icon: "TLS",
     readingTime: 12,
     relatedSlugs: ["how-dns-works", "http-status-codes-explained"],
+    date: "2024-01-10",
     sections: [
       {
         heading: "Why TLS Matters",
@@ -185,6 +189,7 @@ export const tutorials: Tutorial[] = [
     icon: "DCK",
     readingTime: 15,
     relatedSlugs: ["kubernetes-core-concepts", "linux-file-permissions"],
+    date: "2024-01-15",
     sections: [
       {
         heading: "What is Docker?",
@@ -221,6 +226,7 @@ export const tutorials: Tutorial[] = [
     icon: "RWX",
     readingTime: 8,
     relatedSlugs: ["docker-fundamentals", "ssh-key-authentication"],
+    date: "2024-01-20",
     sections: [
       {
         heading: "Understanding Permission Notation",
@@ -255,6 +261,7 @@ export const tutorials: Tutorial[] = [
     icon: "API",
     readingTime: 10,
     relatedSlugs: ["http-status-codes-explained", "how-dns-works"],
+    date: "2024-01-25",
     sections: [
       {
         heading: "Core REST Principles",
@@ -287,6 +294,7 @@ export const tutorials: Tutorial[] = [
     icon: "SSH",
     readingTime: 8,
     relatedSlugs: ["linux-file-permissions", "ssl-tls-handshake"],
+    date: "2024-02-01",
     sections: [
       {
         heading: "How SSH Key Authentication Works",
@@ -323,6 +331,7 @@ export const tutorials: Tutorial[] = [
     icon: "GIT",
     readingTime: 10,
     relatedSlugs: ["docker-fundamentals", "rest-api-design-basics"],
+    date: "2024-02-05",
     sections: [
       {
         heading: "Why Branching Strategy Matters",
@@ -357,6 +366,7 @@ export const tutorials: Tutorial[] = [
     icon: "SQL",
     readingTime: 8,
     relatedSlugs: ["rest-api-design-basics", "docker-fundamentals"],
+    date: "2024-02-10",
     sections: [
       {
         heading: "Setup: Two Simple Tables",
@@ -399,6 +409,7 @@ export const tutorials: Tutorial[] = [
     icon: "K8S",
     readingTime: 12,
     relatedSlugs: ["docker-fundamentals", "git-branching-strategies"],
+    date: "2024-02-15",
     sections: [
       {
         heading: "What Kubernetes Solves",
@@ -445,6 +456,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 10,
     toolSlugs: ["jwt-decoder", "base64-encode-decode", "hash-generator"],
     relatedSlugs: ["ssl-tls-handshake", "rest-api-design-basics", "ssh-key-authentication"],
+    date: "2024-03-01",
     sections: [
       {
         heading: "What is a JSON Web Token?",
@@ -487,6 +499,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 8,
     toolSlugs: ["base64-encode-decode", "url-encode-decode", "jwt-decoder"],
     relatedSlugs: ["understanding-jwt-authentication", "ssl-tls-handshake", "http-status-codes-explained"],
+    date: "2024-03-05",
     sections: [
       {
         heading: "Why Base64 Exists",
@@ -529,6 +542,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 9,
     toolSlugs: ["hash-generator", "hmac-generator", "password-generator"],
     relatedSlugs: ["understanding-jwt-authentication", "ssl-tls-handshake", "password-security-best-practices"],
+    date: "2024-03-10",
     sections: [
       {
         heading: "What is a Hash Function?",
@@ -573,6 +587,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 8,
     toolSlugs: ["uuid-generator", "hash-generator"],
     relatedSlugs: ["rest-api-design-basics", "sql-joins-visualized", "understanding-jwt-authentication"],
+    date: "2024-03-15",
     sections: [
       {
         heading: "What is a UUID?",
@@ -619,6 +634,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 7,
     toolSlugs: ["unix-timestamp-converter", "cron-expression-generator"],
     relatedSlugs: ["cron-job-scheduling-guide", "rest-api-design-basics", "uuid-guide"],
+    date: "2024-03-20",
     sections: [
       {
         heading: "What is a Unix Timestamp?",
@@ -663,6 +679,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 14,
     toolSlugs: ["regex-tester"],
     relatedSlugs: ["rest-api-design-basics", "sql-joins-visualized", "http-status-codes-explained"],
+    date: "2024-04-01",
     sections: [
       {
         heading: "Why Regex Exists",
@@ -711,6 +728,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 7,
     toolSlugs: ["url-encode-decode", "url-parser", "base64-encode-decode"],
     relatedSlugs: ["base64-encoding-explained", "rest-api-design-basics", "http-status-codes-explained"],
+    date: "2024-04-05",
     sections: [
       {
         heading: "Why URLs Need Encoding",
@@ -757,6 +775,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 10,
     toolSlugs: ["cron-expression-generator", "unix-timestamp-converter"],
     relatedSlugs: ["linux-file-permissions", "docker-fundamentals", "kubernetes-core-concepts"],
+    date: "2024-04-10",
     sections: [
       {
         heading: "What is Cron?",
@@ -803,6 +822,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 9,
     toolSlugs: ["yaml-to-json", "json-formatter", "json-to-csv"],
     relatedSlugs: ["rest-api-design-basics", "kubernetes-core-concepts", "docker-fundamentals"],
+    date: "2024-04-15",
     sections: [
       {
         heading: "What Problem Both Solve",
@@ -849,6 +869,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 7,
     toolSlugs: ["color-converter", "css-beautifier"],
     relatedSlugs: ["url-encoding-explained", "rest-api-design-basics", "html-validation-and-semantics"],
+    date: "2024-04-20",
     sections: [
       {
         heading: "Why CSS Has Multiple Color Formats",
@@ -897,6 +918,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 12,
     toolSlugs: ["sql-escape", "sql-formatter"],
     relatedSlugs: ["hash-functions-explained", "understanding-jwt-authentication", "sql-joins-visualized"],
+    date: "2024-05-01",
     sections: [
       {
         heading: "What is SQL Injection?",
@@ -941,9 +963,10 @@ export const tutorials: Tutorial[] = [
     readingTime: 10,
     toolSlugs: ["xml-to-json", "json-to-xml", "xml-formatter", "xpath-tester"],
     relatedSlugs: ["json-yaml-comparison", "rest-api-design-basics", "http-status-codes-explained"],
+    date: "2024-05-05",
     sections: [
       {
-        heading: "XML's Rise and JSON's Takeover",
+        heading: "Why XML's Rise and JSON's Takeover",
         body: "In the early 2000s, XML (eXtensible Markup Language) dominated data interchange. SOAP web services, RSS feeds, enterprise middleware, and configuration systems all used XML. It came with a rich ecosystem: XSD for schema validation, XSLT for transformation, XPath for querying, and mature tooling.\n\nWhen AJAX and REST APIs emerged, JSON (JavaScript Object Notation) quickly displaced XML for most web use cases. JSON is simpler, smaller, and directly consumable by JavaScript without parsing overhead.\n\nToday XML remains dominant in specific domains: **Microsoft Office** documents (DOCX, XLSX are zipped XML), **SVG** graphics, **RSS/Atom** feeds, **SAML** authentication, **Android** layouts, and most **enterprise Java** ecosystems.",
       },
       {
@@ -985,6 +1008,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 11,
     toolSlugs: ["password-generator", "hash-generator", "hmac-generator"],
     relatedSlugs: ["hash-functions-explained", "understanding-jwt-authentication", "ssl-tls-handshake"],
+    date: "2024-05-10",
     sections: [
       {
         heading: "How Password Breaches Happen",
@@ -1027,6 +1051,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 9,
     toolSlugs: ["html-validator", "html-formatter", "html-entity-encoder"],
     relatedSlugs: ["http-status-codes-explained", "rest-api-design-basics", "xml-json-data-formats"],
+    date: "2024-05-15",
     sections: [
       {
         heading: "Why HTML Validation Matters",
@@ -1069,6 +1094,7 @@ export const tutorials: Tutorial[] = [
     readingTime: 13,
     toolSlugs: ["sql-formatter", "sql-escape"],
     relatedSlugs: ["sql-joins-visualized", "sql-injection-prevention", "rest-api-design-basics"],
+    date: "2024-05-20",
     sections: [
       {
         heading: "What is a Database Index?",
@@ -1093,10 +1119,8 @@ export const tutorials: Tutorial[] = [
         codeLanguage: "sql",
       },
       {
-        heading: "When Indexes Are Not Used",
-        body: "Indexes can be bypassed in ways that are easy to miss:\n\n- **Function on indexed column** — `WHERE LOWER(email) = 'alice@example.com'` doesn't use an index on `email`. Fix: create a function-based index or store the lowercased value.\n- **Leading wildcard** — `WHERE name LIKE '%alice%'` can't use a B-tree index; `LIKE 'alice%'` can.\n- **Implicit type coercion** — comparing a varchar column to an integer causes a type cast that bypasses the index.\n- **`NOT IN` and `!=`** — the query planner often chooses a seq scan because negation can match most rows.\n- **NULL handling** — `WHERE col IS NULL` may or may not use an index depending on the database and whether NULLs are indexed.",
-        code: "-- ✗ Won't use index on email\nSELECT * FROM users WHERE LOWER(email) = 'alice@example.com';\n\n-- ✓ Fix: create a function-based index\nCREATE INDEX idx_users_email_lower ON users(LOWER(email));\nSELECT * FROM users WHERE LOWER(email) = 'alice@example.com';  -- now uses index\n\n-- ✗ Leading wildcard — full scan\nSELECT * FROM products WHERE name LIKE '%laptop%';\n\n-- ✓ Trailing wildcard — uses index\nSELECT * FROM products WHERE name LIKE 'laptop%';",
-        codeLanguage: "sql",
+        heading: "When To Use Each Index Type",
+        body: "- **B-tree** — Equality and range queries. Good for most cases.\n- **Hash** — Equality lookups only. Faster than B-tree for large keys.\n- **GiST** — Geometry, full-text search. Supports overlapping intervals.\n- **GIN** — Arrays, JSONB. Good for multi-value columns.",
       },
       {
         heading: "Formatting and Reviewing Queries with DevForge",

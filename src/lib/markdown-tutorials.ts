@@ -27,6 +27,37 @@ const VALID_DIFFICULTIES: TutorialDifficulty[] = [
   "advanced",
 ];
 
+const DATE_ONLY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+function formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function parseFrontmatterDate(value: unknown, file: string): string {
+  if (value instanceof Date) {
+    return formatDate(value);
+  }
+
+  if (typeof value !== "string") {
+    throw new Error(`Tutorial "${file}": "date" frontmatter must be a string or Date`);
+  }
+
+  if (DATE_ONLY_PATTERN.test(value)) {
+    return value;
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error(`Tutorial "${file}": invalid "date" frontmatter value "${value}"`);
+  }
+
+  return formatDate(parsed);
+}
+
 function parseMarkdownSections(markdown: string): TutorialSection[] {
   // Split on lines starting with ## (but not ###)
   const chunks = markdown.split(/^(?=## )/m).filter((c) => c.trim());
@@ -63,7 +94,17 @@ function parseMarkdownSections(markdown: string): TutorialSection[] {
 }
 
 function validateFrontmatter(data: Record<string, unknown>, file: string): void {
-  const required = ["title", "slug", "description", "category", "difficulty", "keywords", "icon", "readingTime"];
+  const required = [
+    "title",
+    "slug",
+    "description",
+    "category",
+    "difficulty",
+    "keywords",
+    "icon",
+    "readingTime",
+    "date",
+  ];
   for (const field of required) {
     if (data[field] === undefined || data[field] === null) {
       throw new Error(`Tutorial "${file}": missing required frontmatter field "${field}"`);
@@ -87,7 +128,8 @@ export function loadMarkdownTutorials(): Tutorial[] {
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
 
   return files.map((file) => {
-    const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
+    const filePath = path.join(CONTENT_DIR, file);
+    const raw = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(raw);
 
     validateFrontmatter(data as Record<string, unknown>, file);
@@ -103,6 +145,7 @@ export function loadMarkdownTutorials(): Tutorial[] {
       readingTime: data.readingTime as number,
       relatedSlugs: (data.relatedSlugs as string[]) ?? [],
       toolSlugs: (data.toolSlugs as string[]) ?? [],
+      date: parseFrontmatterDate(data.date, file),
       sections: parseMarkdownSections(content),
     } satisfies Tutorial;
   });

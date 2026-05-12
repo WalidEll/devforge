@@ -15,6 +15,7 @@ keywords:
   - aws vs gcp networking
 icon: "VPC"
 readingTime: 14
+date: "2026-05-10"
 relatedSlugs:
   - how-dns-works
   - docker-fundamentals

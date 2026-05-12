@@ -14,7 +14,12 @@ export function getAllTutorials(): Tutorial[] {
   _cache = [
     ...hardcodedTutorials.filter((t) => !markdownSlugs.has(t.slug)),
     ...markdownTutorials,
-  ];
+  ].sort((a, b) => {
+    const dateDiff = b.date.localeCompare(a.date);
+    if (dateDiff !== 0) return dateDiff;
+
+    return a.title.localeCompare(b.title);
+  });
 
   return _cache;
 }
