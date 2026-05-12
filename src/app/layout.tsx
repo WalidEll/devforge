@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,11 +24,11 @@ export const metadata: Metadata = {
     "Free online developer tools and IT tutorials. JSON formatter, Base64 encoder, JWT decoder, regex tester, UUID generator, and 30+ guides on networking, security, DevOps, and more. No signup required.",
   keywords:
     "developer tools, json formatter, base64 encode, jwt decoder, regex tester, uuid generator, online tools, free tools, developer tutorials, IT guides, devops tutorials",
-  metadataBase: new URL("https://devforge.tools"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     siteName: "DevForge",
     type: "website",
-    url: "https://devforge.tools",
+    url: absoluteUrl("/"),
     title: "DevForge — Free Online Developer Tools & Tutorials",
     description:
       "Free online developer tools and IT tutorials. JSON formatter, Base64 encoder, JWT decoder, and more. No signup required.",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
       "Free online developer tools and IT tutorials. No signup required.",
   },
   alternates: {
-    canonical: "https://devforge.tools",
+    canonical: "/",
   },
   robots: {
     index: true,
@@ -87,12 +88,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "DevForge",
-              url: "https://devforge.tools",
+              url: absoluteUrl("/"),
               description:
                 "Free online developer tools and IT tutorials. No signup required.",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://devforge.tools/tutorials?q={search_term_string}",
+                target: absoluteUrl("/tutorials?q={search_term_string}"),
                 "query-input": "required name=search_term_string",
               },
             }),

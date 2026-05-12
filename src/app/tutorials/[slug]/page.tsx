@@ -10,6 +10,7 @@ import AdUnit from "@/components/AdUnit";
 import MermaidDiagram from "@/components/MermaidDiagram";
 import TutorialCard from "@/components/TutorialCard";
 import ToolCard from "@/components/ToolCard";
+import { absoluteUrl } from "@/lib/site";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -31,12 +32,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `${tutorial.title} — DevForge Tutorial`,
       description: tutorial.description,
-      url: `https://devforge.tools/tutorials/${tutorial.slug}`,
+      url: absoluteUrl(`/tutorials/${tutorial.slug}/`),
       siteName: "DevForge",
       type: "article",
     },
     alternates: {
-      canonical: `https://devforge.tools/tutorials/${tutorial.slug}`,
+      canonical: `/tutorials/${tutorial.slug}/`,
     },
   };
 }
@@ -214,11 +215,11 @@ export default async function TutorialPage({ params }: PageProps) {
     "@type": "Article",
     headline: tutorial.title,
     description: tutorial.description,
-    url: `https://devforge.tools/tutorials/${tutorial.slug}`,
+    url: absoluteUrl(`/tutorials/${tutorial.slug}/`),
     publisher: {
       "@type": "Organization",
       name: "DevForge",
-      url: "https://devforge.tools",
+      url: absoluteUrl("/"),
     },
   };
 

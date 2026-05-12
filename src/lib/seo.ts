@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import type { Tool } from "./tools";
+import { absoluteUrl } from "./site";
 
 const SITE_NAME = "DevForge";
-const SITE_URL = "https://devforge.tools";
 
 export function generateToolMetadata(tool: Tool): Metadata {
   const title = `${tool.name} — Free Online`;
   const description = tool.description;
+  const toolUrl = absoluteUrl(`/${tool.slug}/`);
 
   return {
     title,
@@ -15,12 +16,12 @@ export function generateToolMetadata(tool: Tool): Metadata {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${tool.slug}`,
+      url: toolUrl,
       siteName: SITE_NAME,
       type: "website",
       images: [
         {
-          url: `${SITE_URL}/og/${tool.slug}.png`,
+          url: absoluteUrl(`/og/${tool.slug}.png`),
           width: 1200,
           height: 630,
           alt: tool.name,
@@ -33,7 +34,7 @@ export function generateToolMetadata(tool: Tool): Metadata {
       description,
     },
     alternates: {
-      canonical: `${SITE_URL}/${tool.slug}`,
+      canonical: `/${tool.slug}/`,
     },
   };
 }
@@ -44,7 +45,7 @@ export function generateToolJsonLd(tool: Tool) {
     "@type": "WebApplication",
     name: tool.name,
     description: tool.description,
-    url: `${SITE_URL}/${tool.slug}`,
+    url: absoluteUrl(`/${tool.slug}/`),
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Any",
     offers: {

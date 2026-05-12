@@ -1,0 +1,4 @@
+# Canonicalize exported index documents to the clean trailing-slash URLs.
+/index.html / 301
+/:path/index.html /:path/ 301
+/tutorials/:slug/index.html /tutorials/:slug/ 301

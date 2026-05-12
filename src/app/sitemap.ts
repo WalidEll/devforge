@@ -1,21 +1,20 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools";
 import { tutorials } from "@/lib/tutorials";
+import { absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-const SITE_URL = "https://devforge.tools";
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolEntries: MetadataRoute.Sitemap = tools.map((tool) => ({
-    url: `${SITE_URL}/${tool.slug}/`,
+    url: absoluteUrl(`/${tool.slug}/`),
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
   }));
 
   const tutorialEntries: MetadataRoute.Sitemap = tutorials.map((t) => ({
-    url: `${SITE_URL}/tutorials/${t.slug}/`,
+    url: absoluteUrl(`/tutorials/${t.slug}/`),
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.7,
@@ -23,13 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: `${SITE_URL}/`,
+      url: absoluteUrl("/"),
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/tutorials/`,
+      url: absoluteUrl("/tutorials/"),
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -37,19 +36,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolEntries,
     ...tutorialEntries,
     {
-      url: `${SITE_URL}/about/`,
+      url: absoluteUrl("/about/"),
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.3,
     },
     {
-      url: `${SITE_URL}/privacy-policy/`,
+      url: absoluteUrl("/privacy-policy/"),
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
-      url: `${SITE_URL}/terms/`,
+      url: absoluteUrl("/terms/"),
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.2,
