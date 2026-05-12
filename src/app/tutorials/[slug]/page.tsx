@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { tutorialCategories } from "@/lib/tutorials";
-import type { Tutorial } from "@/lib/tutorials";
+import type { Tutorial, TutorialContentBlock } from "@/lib/tutorials";
 import { getAllTutorials } from "@/lib/all-tutorials";
 import { getToolBySlug } from "@/lib/tools";
 import type { Tool } from "@/lib/tools";
@@ -48,7 +48,7 @@ const difficultyColors: Record<string, string> = {
 };
 
 function renderMarkdownLine(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
@@ -57,6 +57,18 @@ function renderMarkdownLine(text: string) {
         </strong>
       );
     }
+
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code
+          key={i}
+          className="rounded bg-gray-100 px-1 py-0.5 text-[0.95em] text-gray-900 dark:bg-gray-800 dark:text-gray-100"
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+
     return part;
   });
 }
@@ -98,6 +110,89 @@ function renderBody(body: string) {
       </p>
     );
   });
+}
+
+function renderCodeBlock(code: string, language?: string) {
+  if (language === "mermaid") {
+    return <MermaidDiagram chart={code} />;
+  }
+
+  return (
+    <pre className="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-gray-950 p-4 text-sm text-gray-100 dark:border-gray-700">
+      <code>{code}</code>
+    </pre>
+  );
+}
+
+function renderSectionBlock(block: TutorialContentBlock, index: number) {
+  if (block.type === "paragraph") {
+    return (
+      <p key={index} className="text-gray-700 dark:text-gray-300">
+        {renderMarkdownLine(block.text)}
+      </p>
+    );
+  }
+
+  if (block.type === "unordered-list") {
+    return (
+      <ul key={index} className="list-disc space-y-1 pl-5 text-gray-700 dark:text-gray-300">
+        {block.items.map((item, itemIndex) => (
+          <li key={itemIndex}>{renderMarkdownLine(item)}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (block.type === "ordered-list") {
+    return (
+      <ol key={index} className="list-decimal space-y-1 pl-5 text-gray-700 dark:text-gray-300">
+        {block.items.map((item, itemIndex) => (
+          <li key={itemIndex}>{renderMarkdownLine(item)}</li>
+        ))}
+      </ol>
+    );
+  }
+
+  if (block.type === "table") {
+    return (
+      <div key={index} className="mt-4 overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+        <table className="min-w-full border-collapse text-left text-sm">
+          <thead className="bg-gray-100 dark:bg-gray-900">
+            <tr>
+              {block.headers.map((header, headerIndex) => (
+                <th
+                  key={headerIndex}
+                  className="border-b border-gray-200 px-4 py-3 font-semibold text-gray-900 dark:border-gray-700 dark:text-white"
+                >
+                  {renderMarkdownLine(header)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {block.rows.map((row, rowIndex) => (
+              <tr key={rowIndex} className="bg-white dark:bg-gray-950/20">
+                {row.map((cell, cellIndex) => (
+                  <td
+                    key={cellIndex}
+                    className="border-b border-gray-200 px-4 py-3 align-top text-gray-700 dark:border-gray-800 dark:text-gray-300"
+                  >
+                    {renderMarkdownLine(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  if (block.type === "code") {
+    return <div key={index}>{renderCodeBlock(block.code, block.language)}</div>;
+  }
+
+  return null;
 }
 
 export default async function TutorialPage({ params }: PageProps) {
@@ -192,15 +287,12 @@ export default async function TutorialPage({ params }: PageProps) {
                   <h2 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                     {section.heading}
                   </h2>
-                  <div className="space-y-3">{renderBody(section.body)}</div>
-                  {section.code &&
-                    (section.codeLanguage === "mermaid" ? (
-                      <MermaidDiagram chart={section.code} />
-                    ) : (
-                      <pre className="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-gray-950 p-4 text-sm text-gray-100 dark:border-gray-700">
-                        <code>{section.code}</code>
-                      </pre>
-                    ))}
+                  <div className="space-y-3">
+                    {section.blocks?.length
+                      ? section.blocks.map((block, blockIndex) => renderSectionBlock(block, blockIndex))
+                      : renderBody(section.body)}
+                  </div>
+                  {!section.blocks?.length && section.code && renderCodeBlock(section.code, section.codeLanguage)}
                 </section>
               ))}
             </div>

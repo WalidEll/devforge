@@ -4,6 +4,7 @@ import path from "path";
 import matter from "gray-matter";
 import type {
   Tutorial,
+  TutorialContentBlock,
   TutorialSection,
   TutorialCategory,
   TutorialDifficulty,
@@ -58,6 +59,139 @@ function parseFrontmatterDate(value: unknown, file: string): string {
   return formatDate(parsed);
 }
 
+function isTableSeparator(line: string): boolean {
+  return /^\s*\|?(?:\s*:?-{3,}:?\s*\|)+\s*:?-{3,}:?\s*\|?\s*$/.test(line);
+}
+
+function isTableRow(line: string): boolean {
+  return line.includes("|");
+}
+
+function splitTableRow(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function parseSectionBlocks(markdown: string): TutorialContentBlock[] {
+  const blocks: TutorialContentBlock[] = [];
+  const lines = markdown.split("\n");
+  let index = 0;
+
+  const isUnorderedListItem = (line: string) => /^[-*]\s+/.test(line);
+  const isOrderedListItem = (line: string) => /^\d+\.\s+/.test(line);
+
+  while (index < lines.length) {
+    const line = lines[index];
+
+    if (!line.trim()) {
+      index += 1;
+      continue;
+    }
+
+    if (line.startsWith("```")) {
+      const language = line.slice(3).trim() || undefined;
+      index += 1;
+
+      const codeLines: string[] = [];
+      while (index < lines.length && !lines[index].startsWith("```")) {
+        codeLines.push(lines[index]);
+        index += 1;
+      }
+
+      if (index < lines.length && lines[index].startsWith("```")) {
+        index += 1;
+      }
+
+      blocks.push({
+        type: "code",
+        code: codeLines.join("\n").trimEnd(),
+        ...(language ? { language } : {}),
+      });
+      continue;
+    }
+
+    if (
+      index + 1 < lines.length &&
+      isTableRow(line) &&
+      isTableSeparator(lines[index + 1])
+    ) {
+      const headers = splitTableRow(line);
+      index += 2;
+
+      const rows: string[][] = [];
+      while (index < lines.length && lines[index].trim() && isTableRow(lines[index])) {
+        rows.push(splitTableRow(lines[index]));
+        index += 1;
+      }
+
+      blocks.push({
+        type: "table",
+        headers,
+        rows,
+      });
+      continue;
+    }
+
+    if (isUnorderedListItem(line)) {
+      const items: string[] = [];
+
+      while (index < lines.length && isUnorderedListItem(lines[index])) {
+        items.push(lines[index].replace(/^[-*]\s+/, "").trim());
+        index += 1;
+      }
+
+      blocks.push({
+        type: "unordered-list",
+        items,
+      });
+      continue;
+    }
+
+    if (isOrderedListItem(line)) {
+      const items: string[] = [];
+
+      while (index < lines.length && isOrderedListItem(lines[index])) {
+        items.push(lines[index].replace(/^\d+\.\s+/, "").trim());
+        index += 1;
+      }
+
+      blocks.push({
+        type: "ordered-list",
+        items,
+      });
+      continue;
+    }
+
+    const paragraphLines: string[] = [];
+    while (
+      index < lines.length &&
+      lines[index].trim() &&
+      !lines[index].startsWith("```") &&
+      !isUnorderedListItem(lines[index]) &&
+      !isOrderedListItem(lines[index]) &&
+      !(
+        index + 1 < lines.length &&
+        isTableRow(lines[index]) &&
+        isTableSeparator(lines[index + 1])
+      )
+    ) {
+      paragraphLines.push(lines[index].trim());
+      index += 1;
+    }
+
+    blocks.push({
+      type: "paragraph",
+      text: paragraphLines.join("\n"),
+    });
+  }
+
+  return blocks;
+}
+
 function parseMarkdownSections(markdown: string): TutorialSection[] {
   // Split on lines starting with ## (but not ###)
   const chunks = markdown.split(/^(?=## )/m).filter((c) => c.trim());
@@ -69,24 +203,19 @@ function parseMarkdownSections(markdown: string): TutorialSection[] {
     if (!headingLine) continue;
 
     const rest = lines.slice(1).join("\n");
-
-    // Extract the first fenced code block
-    const codeMatch = rest.match(/```(\w*)\n([\s\S]*?)```/);
-    let code: string | undefined;
-    let codeLanguage: string | undefined;
-    let body = rest;
-
-    if (codeMatch) {
-      codeLanguage = codeMatch[1] || undefined;
-      code = codeMatch[2].trimEnd();
-      body = rest.replace(codeMatch[0], "").trim();
-    }
+    const blocks = parseSectionBlocks(rest.trim());
+    const firstCodeBlock = blocks.find((block) => block.type === "code");
+    const body = blocks
+      .filter((block): block is Extract<TutorialContentBlock, { type: "paragraph" }> => block.type === "paragraph")
+      .map((block) => block.text)
+      .join("\n\n");
 
     sections.push({
       heading: headingLine,
       body: body.trim(),
-      ...(code !== undefined && { code }),
-      ...(codeLanguage !== undefined && { codeLanguage }),
+      ...(firstCodeBlock && { code: firstCodeBlock.code }),
+      ...(firstCodeBlock?.language && { codeLanguage: firstCodeBlock.language }),
+      blocks,
     });
   }
 

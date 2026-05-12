@@ -9,11 +9,40 @@ export type TutorialCategory =
 
 export type TutorialDifficulty = "beginner" | "intermediate" | "advanced";
 
+export interface TutorialParagraphBlock {
+  type: "paragraph";
+  text: string;
+}
+
+export interface TutorialListBlock {
+  type: "unordered-list" | "ordered-list";
+  items: string[];
+}
+
+export interface TutorialTableBlock {
+  type: "table";
+  headers: string[];
+  rows: string[][];
+}
+
+export interface TutorialCodeBlock {
+  type: "code";
+  code: string;
+  language?: string;
+}
+
+export type TutorialContentBlock =
+  | TutorialParagraphBlock
+  | TutorialListBlock
+  | TutorialTableBlock
+  | TutorialCodeBlock;
+
 export interface TutorialSection {
   heading: string;
   body: string;
   code?: string;
   codeLanguage?: string;
+  blocks?: TutorialContentBlock[];
 }
 
 export interface Tutorial {
