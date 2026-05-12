@@ -6,19 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-tabs": "^1.1.13",
     "@sentry/nextjs": "^10.52.0",
     "@tailwindcss/postcss": "^4",
+    "@xyflow/react": "^12.10.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
+    "html-to-image": "^1.11.13",
     "js-beautify": "^1.15.4",
+    "lucide-react": "^1.14.0",
     "mermaid": "^11.15.0",
     "next": "16.2.4",
     "qrcode": "^1.5.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwindcss": "^4"
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@types/js-beautify": "^1.14.3",
@@ -28,6 +39,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.6"
   }
 }

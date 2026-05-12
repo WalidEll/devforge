@@ -1,53 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevForge
 
-## Getting Started
+DevForge is a Next.js application for browser-based developer tools and hands-on tutorials. This repo now includes the **GCP Virtual Network Planner**, an interactive client-side network modeling tool for Google Cloud.
 
-First, run the development server:
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## GCP Virtual Network Planner
+
+Route: `http://localhost:3000/gcp-virtual-network-planner`
+
+The planner is a browser-based MVP for designing and validating Google Cloud network topologies. It includes:
+
+- React Flow canvas with drag-and-drop GCP components
+- Editable properties panel backed by Zustand state
+- Pure TypeScript validation rules for CIDR overlap, NAT gaps, firewall risk, DNS issues, and peering assumptions
+- Educational traffic simulation for VM, internet, and on-prem paths
+- Client-side exports for JSON, Terraform, gcloud commands, Markdown, PNG, and SVG
+
+The simulator is intentionally educational. It approximates GCP behavior and is **not** a replacement for Google Cloud Network Intelligence Center or production policy validation.
+
+## Example architecture
+
+A ready-to-import sample is available at:
+
+- `public/examples/gcp-virtual-network-planner-web-tier.json`
+
+You can also load built-in samples directly from the planner toolbar.
+
+## Testing
+
+```bash
+npm run test
+```
+
+Current test coverage focuses on the planner engines:
+
+- CIDR overlap detection
+- Firewall rule matching
+- Cloud NAT validation
+- Traffic simulation
+- Terraform generation
+
+## Useful scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## GitHub Actions deployment
-
-This repo includes a production deployment workflow at `.github/workflows/deploy-vercel.yml`. It runs on pushes to `main` and on manual dispatch, then uses the Vercel CLI flow of `pull`, `build`, and `deploy --prebuilt`.
-
-Before the workflow can deploy, add these GitHub Actions secrets in the repository settings:
-
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-You can get the org and project IDs after linking the project with Vercel:
-
-```bash
-vercel link
-cat .vercel/project.json
+npm run build
+npm run lint
+npm run test
 ```

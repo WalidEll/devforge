@@ -505,6 +505,23 @@ export const tools: Tool[] = [
     icon: "IP6",
     relatedSlugs: ["ipv4-subnet-calculator", "mac-address-generator"],
   },
+  {
+    name: "GCP Virtual Network Planner",
+    slug: "gcp-virtual-network-planner",
+    description:
+      "Design, validate, and simulate Google Cloud VPC architectures in your browser. Model VPCs, subnets, VMs, firewalls, and Cloud NAT, then export Terraform, JSON, gcloud commands, and Markdown.",
+    shortDescription: "Plan and simulate GCP networks",
+    category: "networking",
+    keywords: [
+      "gcp network planner",
+      "gcp vpc simulator",
+      "google cloud subnet planner",
+      "cloud firewall simulator",
+      "terraform network generator",
+    ],
+    icon: "GCP",
+    relatedSlugs: ["ipv4-subnet-calculator", "ipv4-address-converter", "json-formatter"],
+  },
   // --- Validators ---
   {
     name: "HTML Validator",
