@@ -7,6 +7,7 @@ import { getAllTutorials } from "@/lib/all-tutorials";
 import { getToolBySlug } from "@/lib/tools";
 import type { Tool } from "@/lib/tools";
 import AdUnit from "@/components/AdUnit";
+import MermaidDiagram from "@/components/MermaidDiagram";
 import TutorialCard from "@/components/TutorialCard";
 import ToolCard from "@/components/ToolCard";
 
@@ -192,11 +193,14 @@ export default async function TutorialPage({ params }: PageProps) {
                     {section.heading}
                   </h2>
                   <div className="space-y-3">{renderBody(section.body)}</div>
-                  {section.code && (
-                    <pre className="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-gray-950 p-4 text-sm text-gray-100 dark:border-gray-700">
-                      <code>{section.code}</code>
-                    </pre>
-                  )}
+                  {section.code &&
+                    (section.codeLanguage === "mermaid" ? (
+                      <MermaidDiagram chart={section.code} />
+                    ) : (
+                      <pre className="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-gray-950 p-4 text-sm text-gray-100 dark:border-gray-700">
+                        <code>{section.code}</code>
+                      </pre>
+                    ))}
                 </section>
               ))}
             </div>
