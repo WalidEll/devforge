@@ -9,16 +9,16 @@ import { absoluteUrl } from "@/lib/site";
 import { learningPaths } from "@/lib/navigation";
 
 export const metadata: Metadata = {
-  title: "DevForge — Free Developer Tools & Cloud Engineering Tutorials",
+  title: "DevForge — Free Cloud Engineering Tools & Tutorials",
   description:
-    "Free browser-based developer tools and cloud engineering tutorials. JSON formatter, CIDR calculator, Base64 encoder, and 40+ more tools. GCP, Kubernetes, Terraform, and DevOps guides.",
+    "Cloud engineering tutorials and free browser tools for GCP, Kubernetes, and Terraform. 40+ utilities: CIDR, JSON, Base64, and more. No signup required.",
   alternates: {
     canonical: absoluteUrl("/"),
   },
   openGraph: {
-    title: "DevForge — Free Developer Tools & Cloud Engineering Tutorials",
+    title: "DevForge — Free Cloud Engineering Tools & Tutorials",
     description:
-      "40+ free developer tools and in-depth cloud engineering tutorials for GCP, Kubernetes, Terraform, and DevOps. No signup, no tracking.",
+      "Cloud engineering tutorials and free browser tools for GCP, Kubernetes, and Terraform. 40+ utilities. No signup required.",
     url: absoluteUrl("/"),
     type: "website",
   },
@@ -185,26 +185,29 @@ export default function HomePage() {
 
       {/* Why DevForge */}
       <section className="mb-12 rounded-xl border border-gray-200 bg-gray-50 p-8 dark:border-gray-800 dark:bg-gray-900">
-        <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+        <h2 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
           Why DevForge?
         </h2>
+        <p className="mb-6 text-sm text-gray-600 dark:text-gray-400">
+          DevForge was built to give cloud engineers, DevOps practitioners, and platform engineers a single place for both reference material and the utilities they reach for every day. Unlike generic tool aggregators, every tutorial and tool on DevForge is written with production cloud infrastructure in mind — covering real GCP architectures, Kubernetes workloads, Terraform patterns, and CI/CD pipelines used in professional environments.
+        </p>
         <div className="grid gap-6 sm:grid-cols-3">
           <div>
-            <h3 className="mb-1 font-semibold text-gray-900 dark:text-white">100% Client-Side</h3>
+            <h3 className="mb-1 font-semibold text-gray-900 dark:text-white">100% Client-Side Tools</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              All tools run in your browser. Your data never leaves your machine — no server processing, no uploads.
+              Every tool runs entirely in your browser using JavaScript. Your data — IP ranges, JSON payloads, JWT tokens, certificates — never leaves your machine. No server processing, no uploads, no logging.
             </p>
           </div>
           <div>
             <h3 className="mb-1 font-semibold text-gray-900 dark:text-white">No Signup Required</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              No accounts, no email gates, no rate limits. Every tool is free and instantly available.
+              No accounts, no email gates, no rate limits, no paywalls. Every tool and every tutorial is free and instantly available. Bookmark the tools you use most and come back any time.
             </p>
           </div>
           <div>
             <h3 className="mb-1 font-semibold text-gray-900 dark:text-white">Cloud-Engineering Focused</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Built for cloud engineers and DevOps practitioners — production-grade examples, not toy demos.
+              Content is written for working engineers, not beginners learning general programming. Tutorials cover production-grade GCP networking, Kubernetes cluster operations, Terraform module design, and real-world DevOps workflows.
             </p>
           </div>
         </div>
