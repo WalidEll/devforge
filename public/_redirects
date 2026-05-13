@@ -2,3 +2,105 @@
 /index.html / 301
 /:path/index.html /:path/ 301
 /tutorials/:slug/index.html /tutorials/:slug/ 301
+
+# ── Tool URL migration: old root-level → new /tools/[category]/[slug] (301) ──
+
+# formatters
+/json-formatter /tools/formatters/json-formatter/ 301
+/json-formatter/ /tools/formatters/json-formatter/ 301
+/regex-tester /tools/formatters/regex-tester/ 301
+/regex-tester/ /tools/formatters/regex-tester/ 301
+/markdown-preview /tools/formatters/markdown-preview/ 301
+/markdown-preview/ /tools/formatters/markdown-preview/ 301
+/sql-formatter /tools/formatters/sql-formatter/ 301
+/sql-formatter/ /tools/formatters/sql-formatter/ 301
+/xml-formatter /tools/formatters/xml-formatter/ 301
+/xml-formatter/ /tools/formatters/xml-formatter/ 301
+/html-formatter /tools/formatters/html-formatter/ 301
+/html-formatter/ /tools/formatters/html-formatter/ 301
+/javascript-beautifier /tools/formatters/javascript-beautifier/ 301
+/javascript-beautifier/ /tools/formatters/javascript-beautifier/ 301
+/css-beautifier /tools/formatters/css-beautifier/ 301
+/css-beautifier/ /tools/formatters/css-beautifier/ 301
+
+# encoders
+/base64-encode-decode /tools/encoders/base64-encode-decode/ 301
+/base64-encode-decode/ /tools/encoders/base64-encode-decode/ 301
+/url-encode-decode /tools/encoders/url-encode-decode/ 301
+/url-encode-decode/ /tools/encoders/url-encode-decode/ 301
+/html-entity-encoder /tools/encoders/html-entity-encoder/ 301
+/html-entity-encoder/ /tools/encoders/html-entity-encoder/ 301
+/javascript-escape /tools/encoders/javascript-escape/ 301
+/javascript-escape/ /tools/encoders/javascript-escape/ 301
+/json-escape /tools/encoders/json-escape/ 301
+/json-escape/ /tools/encoders/json-escape/ 301
+/xml-escape /tools/encoders/xml-escape/ 301
+/xml-escape/ /tools/encoders/xml-escape/ 301
+/sql-escape /tools/encoders/sql-escape/ 301
+/sql-escape/ /tools/encoders/sql-escape/ 301
+/csv-escape /tools/encoders/csv-escape/ 301
+/csv-escape/ /tools/encoders/csv-escape/ 301
+/hmac-generator /tools/encoders/hmac-generator/ 301
+/hmac-generator/ /tools/encoders/hmac-generator/ 301
+/jwt-decoder /tools/encoders/jwt-decoder/ 301
+/jwt-decoder/ /tools/encoders/jwt-decoder/ 301
+/hash-generator /tools/encoders/hash-generator/ 301
+/hash-generator/ /tools/encoders/hash-generator/ 301
+/cert-details-viewer /tools/encoders/cert-details-viewer/ 301
+/cert-details-viewer/ /tools/encoders/cert-details-viewer/ 301
+/password-generator /tools/encoders/password-generator/ 301
+/password-generator/ /tools/encoders/password-generator/ 301
+
+# generators
+/cron-expression-generator /tools/generators/cron-expression-generator/ 301
+/cron-expression-generator/ /tools/generators/cron-expression-generator/ 301
+/uuid-generator /tools/generators/uuid-generator/ 301
+/uuid-generator/ /tools/generators/uuid-generator/ 301
+/lorem-ipsum-generator /tools/generators/lorem-ipsum-generator/ 301
+/lorem-ipsum-generator/ /tools/generators/lorem-ipsum-generator/ 301
+/qr-code-generator /tools/generators/qr-code-generator/ 301
+/qr-code-generator/ /tools/generators/qr-code-generator/ 301
+
+# converters
+/unix-timestamp-converter /tools/converters/unix-timestamp-converter/ 301
+/unix-timestamp-converter/ /tools/converters/unix-timestamp-converter/ 301
+/color-converter /tools/converters/color-converter/ 301
+/color-converter/ /tools/converters/color-converter/ 301
+/xml-to-json /tools/converters/xml-to-json/ 301
+/xml-to-json/ /tools/converters/xml-to-json/ 301
+/json-to-xml /tools/converters/json-to-xml/ 301
+/json-to-xml/ /tools/converters/json-to-xml/ 301
+/csv-to-json /tools/converters/csv-to-json/ 301
+/csv-to-json/ /tools/converters/csv-to-json/ 301
+/csv-to-xml /tools/converters/csv-to-xml/ 301
+/csv-to-xml/ /tools/converters/csv-to-xml/ 301
+/json-to-csv /tools/converters/json-to-csv/ 301
+/json-to-csv/ /tools/converters/json-to-csv/ 301
+/yaml-to-json /tools/converters/yaml-to-json/ 301
+/yaml-to-json/ /tools/converters/yaml-to-json/ 301
+/url-parser /tools/converters/url-parser/ 301
+/url-parser/ /tools/converters/url-parser/ 301
+
+# validators
+/html-validator /tools/validators/html-validator/ 301
+/html-validator/ /tools/validators/html-validator/ 301
+/xpath-tester /tools/validators/xpath-tester/ 301
+/xpath-tester/ /tools/validators/xpath-tester/ 301
+/credit-card-validator /tools/validators/credit-card-validator/ 301
+/credit-card-validator/ /tools/validators/credit-card-validator/ 301
+
+# networking
+/ipv4-subnet-calculator /tools/networking/ipv4-subnet-calculator/ 301
+/ipv4-subnet-calculator/ /tools/networking/ipv4-subnet-calculator/ 301
+/ipv4-address-converter /tools/networking/ipv4-address-converter/ 301
+/ipv4-address-converter/ /tools/networking/ipv4-address-converter/ 301
+/ipv4-range-expander /tools/networking/ipv4-range-expander/ 301
+/ipv4-range-expander/ /tools/networking/ipv4-range-expander/ 301
+/mac-address-lookup /tools/networking/mac-address-lookup/ 301
+/mac-address-lookup/ /tools/networking/mac-address-lookup/ 301
+/mac-address-generator /tools/networking/mac-address-generator/ 301
+/mac-address-generator/ /tools/networking/mac-address-generator/ 301
+/ipv6-ula-generator /tools/networking/ipv6-ula-generator/ 301
+/ipv6-ula-generator/ /tools/networking/ipv6-ula-generator/ 301
+/gcp-virtual-network-planner /tools/networking/gcp-virtual-network-planner/ 301
+/gcp-virtual-network-planner/ /tools/networking/gcp-virtual-network-planner/ 301

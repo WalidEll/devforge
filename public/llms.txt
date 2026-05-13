@@ -1,0 +1,51 @@
+# DevForge
+
+> The cloud engineer's reference — GCP tutorials, Kubernetes guides, Terraform playbooks, and the browser tools to build alongside them.
+
+DevForge is a free cloud engineering learning platform. All content is publicly accessible. No login required.
+
+## What DevForge provides
+
+- In-depth tutorials on GCP networking, Kubernetes, Terraform, CI/CD, monitoring, and DevOps
+- 40+ browser-based developer tools that run entirely client-side (no data leaves the user's browser)
+- Structured learning paths for cloud engineers at beginner, intermediate, and advanced levels
+
+## Tutorials
+
+Browse all tutorials: https://devforge.tools/tutorials/
+
+Key topic areas:
+- GCP Networking (VPC, subnets, firewall rules, Cloud NAT, DNS, routing, hybrid connectivity)
+- GCP Security (IAM, KMS, Secret Manager, VPC Service Controls)
+- GKE & Kubernetes (cluster setup, workloads, services, networking)
+- Terraform (providers, modules, remote state, workspaces)
+- CI/CD (Cloud Build, GitHub Actions, ArgoCD)
+- Monitoring & Observability (Cloud Monitoring, Prometheus, Grafana)
+- Cloudflare (Zero Trust, Workers, Tunnel)
+- DevOps fundamentals, architecture patterns, Linux & CLI
+
+## Developer Tools
+
+Browse all tools: https://devforge.tools/tools/
+
+Categories:
+- Networking: https://devforge.tools/tools/networking/ — CIDR calculator, IPv4 subnet calculator, IPv4 range expander, IPv4 address converter, IPv6 ULA generator, MAC address lookup, MAC address generator, GCP virtual network planner
+- Formatters: https://devforge.tools/tools/formatters/ — JSON, XML, SQL, HTML, JavaScript, CSS, Markdown
+- Encoders & Decoders: https://devforge.tools/tools/encoders/ — Base64, URL, HTML entities, JWT decoder, hash generator, HMAC, password generator
+- Generators: https://devforge.tools/tools/generators/ — UUID, cron expression builder, lorem ipsum, QR code
+- Converters: https://devforge.tools/tools/converters/ — JSON↔CSV, JSON↔XML, YAML↔JSON, Unix timestamp, color converter, URL parser
+- Validators: https://devforge.tools/tools/validators/ — HTML validator, XPath tester, regex tester, credit card validator
+
+## Learning Paths
+
+Browse all paths: https://devforge.tools/paths/
+
+- GCP Networking Engineer: https://devforge.tools/paths/gcp-networking-engineer/
+- Kubernetes Administrator: https://devforge.tools/paths/kubernetes-administrator/
+- Terraform Practitioner: https://devforge.tools/paths/terraform-practitioner/
+- DevOps Foundations: https://devforge.tools/paths/devops-foundations/
+- GCP Security Engineer: https://devforge.tools/paths/gcp-security-engineer/
+
+## Content Policy
+
+All tutorials and tools are free to use. Content is written for practising cloud engineers, DevOps practitioners, and students learning cloud infrastructure. No paywall, no signup required.

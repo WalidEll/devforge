@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import GlobalNavbar from "@/components/navigation/GlobalNavbar";
 import Footer from "@/components/Footer";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 import "./globals.css";
@@ -84,22 +84,34 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "DevForge",
-              url: absoluteUrl("/"),
-              description:
-                "Free online developer tools and IT tutorials. No signup required.",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: absoluteUrl("/tutorials?q={search_term_string}"),
-                "query-input": "required name=search_term_string",
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "DevForge",
+                url: absoluteUrl("/"),
+                description:
+                  "Cloud engineering tutorials and free browser tools for GCP, Kubernetes, Terraform, and DevOps.",
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: absoluteUrl("/tutorials?q={search_term_string}"),
+                  "query-input": "required name=search_term_string",
+                },
               },
-            }),
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "DevForge",
+                url: absoluteUrl("/"),
+                logo: absoluteUrl("/favicon.ico"),
+                description:
+                  "DevForge is a free cloud engineering learning platform providing GCP, Kubernetes, Terraform, and DevOps tutorials alongside 40+ browser-based developer tools.",
+                sameAs: [],
+              },
+            ]),
           }}
         />
-        <Navbar />
+        <GlobalNavbar />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

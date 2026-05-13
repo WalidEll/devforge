@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { Tool } from "@/lib/tools";
+import { getToolPath } from "@/lib/navigation";
 
 export default function ToolCard({ tool }: { tool: Tool }) {
   return (
     <Link
-      href={`/${tool.slug}`}
+      href={getToolPath(tool.slug)}
       className="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-5 transition-all hover:border-blue-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-700"
     >
       <div className="flex items-center gap-3">

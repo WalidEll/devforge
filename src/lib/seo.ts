@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import type { Tool } from "./tools";
 import { absoluteUrl } from "./site";
+import { getToolPath } from "./navigation";
 
 const SITE_NAME = "DevForge";
 
 export function generateToolMetadata(tool: Tool): Metadata {
   const title = `${tool.name} — Free Online`;
   const description = tool.description;
-  const toolUrl = absoluteUrl(`/${tool.slug}/`);
+  const toolPath = getToolPath(tool.slug);
+  const toolUrl = absoluteUrl(toolPath);
 
   return {
     title,
@@ -34,7 +36,7 @@ export function generateToolMetadata(tool: Tool): Metadata {
       description,
     },
     alternates: {
-      canonical: `/${tool.slug}/`,
+      canonical: toolPath,
     },
   };
 }
@@ -45,7 +47,7 @@ export function generateToolJsonLd(tool: Tool) {
     "@type": "WebApplication",
     name: tool.name,
     description: tool.description,
-    url: absoluteUrl(`/${tool.slug}/`),
+    url: absoluteUrl(getToolPath(tool.slug)),
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Any",
     offers: {
