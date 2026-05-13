@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { tutorialCategories } from "@/lib/tutorials";
 import type { Tutorial, TutorialContentBlock } from "@/lib/tutorials";
@@ -11,6 +10,9 @@ import MermaidDiagram from "@/components/MermaidDiagram";
 import TutorialCard from "@/components/TutorialCard";
 import ToolCard from "@/components/ToolCard";
 import { absoluteUrl } from "@/lib/site";
+import SidebarNav from "@/components/navigation/SidebarNav";
+import Breadcrumbs from "@/components/navigation/Breadcrumbs";
+import TableOfContents from "@/components/navigation/TableOfContents";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -230,20 +232,24 @@ export default async function TutorialPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        <AdUnit slot="TOP_LEADERBOARD" format="horizontal" />
+      {/* 3-column layout: left sidebar | article | right TOC */}
+      <div className="mx-auto flex max-w-[1400px] gap-0 px-4 py-6">
+        {/* Left sidebar */}
+        <aside className="hidden w-56 shrink-0 xl:block">
+          <div className="sticky top-20 overflow-y-auto pr-4" style={{ maxHeight: "calc(100vh - 5rem)" }}>
+            <SidebarNav />
+          </div>
+        </aside>
 
-        <div className="mt-6 flex flex-col gap-8 lg:flex-row">
-          <article className="min-w-0 flex-1">
-            <div className="mb-2">
-              <Link
-                href="/tutorials"
-                className="text-sm text-blue-600 hover:underline dark:text-blue-400"
-              >
-                &larr; All Tutorials
-              </Link>
-            </div>
+        {/* Main content */}
+        <div className="min-w-0 flex-1 xl:px-8">
+          <AdUnit slot="TOP_LEADERBOARD" format="horizontal" />
 
+          <div className="mt-4">
+            <Breadcrumbs />
+          </div>
+
+          <article className="min-w-0">
             <div className="mb-6">
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400">
@@ -263,24 +269,6 @@ export default async function TutorialPage({ params }: PageProps) {
               </h1>
               <p className="mt-2 text-gray-600 dark:text-gray-400">{tutorial.description}</p>
             </div>
-
-            <nav className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
-              <p className="mb-2 text-sm font-semibold text-gray-900 dark:text-white">
-                In this tutorial
-              </p>
-              <ol className="list-decimal space-y-1 pl-5 text-sm">
-                {tutorial.sections.map((section, i) => (
-                  <li key={i}>
-                    <a
-                      href={`#section-${i}`}
-                      className="text-blue-600 hover:underline dark:text-blue-400"
-                    >
-                      {section.heading}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
 
             <div className="space-y-8">
               {tutorial.sections.map((section, i) => (
@@ -329,12 +317,11 @@ export default async function TutorialPage({ params }: PageProps) {
               </section>
             )}
           </article>
+        </div>
 
-          <aside className="w-full shrink-0 lg:w-72">
-            <div className="sticky top-20 space-y-6">
-              <AdUnit slot="SIDEBAR_RECT" format="rectangle" />
-            </div>
-          </aside>
+        {/* Right sidebar — TOC + metadata */}
+        <div className="hidden shrink-0 lg:block lg:w-64 xl:w-72">
+          <TableOfContents tutorial={tutorial} />
         </div>
       </div>
     </>

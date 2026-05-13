@@ -1,9 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { categories, getToolsByCategory, tools } from "@/lib/tools";
 import type { ToolCategory } from "@/lib/tools";
 import { getAllTutorials } from "@/lib/all-tutorials";
 import ToolCard from "@/components/ToolCard";
 import TutorialCard from "@/components/TutorialCard";
+import { absoluteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "DevForge — Free Developer Tools & Cloud Engineering Tutorials",
+  description:
+    "Free browser-based developer tools and cloud engineering tutorials. JSON formatter, CIDR calculator, Base64 encoder, and 40+ more tools. GCP, Kubernetes, Terraform, and DevOps guides.",
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
+  openGraph: {
+    title: "DevForge — Free Developer Tools & Cloud Engineering Tutorials",
+    description:
+      "40+ free developer tools and in-depth cloud engineering tutorials for GCP, Kubernetes, Terraform, and DevOps. No signup, no tracking.",
+    url: absoluteUrl("/"),
+    type: "website",
+  },
+};
 
 const categoryOrder: ToolCategory[] = ["formatters", "encoders", "generators", "converters", "validators", "networking"];
 

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { tools } from "@/lib/tools";
 import { tutorials } from "@/lib/tutorials";
+import { getToolPath } from "@/lib/navigation";
 
 const THEME_EVENT = "theme-change";
 
@@ -125,7 +126,7 @@ export default function Navbar() {
                   {filteredTools.slice(0, 5).map((tool) => (
                     <Link
                       key={tool.slug}
-                      href={`/${tool.slug}`}
+                      href={getToolPath(tool.slug)}
                       onClick={() => {
                         setOpen(false);
                         setQuery("");
