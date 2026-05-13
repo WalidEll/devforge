@@ -5,9 +5,13 @@ import { usePathname } from "next/navigation";
 import { getBreadcrumbs } from "@/lib/navigation";
 import { absoluteUrl } from "@/lib/site";
 
-export default function Breadcrumbs() {
+export default function Breadcrumbs({ overrideTitle }: { overrideTitle?: string } = {}) {
   const pathname = usePathname();
-  const crumbs = getBreadcrumbs(pathname);
+  const raw = getBreadcrumbs(pathname);
+  const crumbs =
+    overrideTitle && raw.length > 0
+      ? [...raw.slice(0, -1), { ...raw[raw.length - 1], label: overrideTitle }]
+      : raw;
 
   if (crumbs.length <= 1) return null;
 

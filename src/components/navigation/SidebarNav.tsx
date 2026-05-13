@@ -139,6 +139,7 @@ function SectionGroup({
     <div>
       <button
         onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
         className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
       >
         <span className="text-base leading-none">{section.icon}</span>

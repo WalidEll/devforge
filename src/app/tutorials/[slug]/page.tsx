@@ -243,10 +243,10 @@ export default async function TutorialPage({ params }: PageProps) {
 
         {/* Main content */}
         <div className="min-w-0 flex-1 xl:px-8">
-          <AdUnit slot="TOP_LEADERBOARD" format="horizontal" />
+          <AdUnit slot="TOP_LEADERBOARD" format="horizontal" className="hidden sm:block" />
 
           <div className="mt-4">
-            <Breadcrumbs />
+            <Breadcrumbs overrideTitle={tutorial.title} />
           </div>
 
           <article className="min-w-0">

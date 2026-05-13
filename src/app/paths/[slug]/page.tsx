@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { learningPaths } from "@/lib/navigation";
 import { getAllTutorials } from "@/lib/all-tutorials";
 import TutorialCard from "@/components/TutorialCard";
+import SidebarNav from "@/components/navigation/SidebarNav";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -38,7 +39,16 @@ export default async function PathDetailPage({ params }: PageProps) {
   const allTutorials = getAllTutorials();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10">
+    <div className="mx-auto flex max-w-[1400px] gap-0 px-4 py-6">
+      {/* Left sidebar */}
+      <aside className="hidden w-56 shrink-0 xl:block">
+        <div className="sticky top-20 overflow-y-auto pr-4" style={{ maxHeight: "calc(100vh - 5rem)" }}>
+          <SidebarNav />
+        </div>
+      </aside>
+
+      <div className="min-w-0 flex-1 xl:px-8">
+    <div className="mx-auto max-w-4xl py-4">
       {/* Breadcrumb */}
       <nav className="mb-6 flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
         <Link href="/" className="hover:text-gray-900 dark:hover:text-white">Home</Link>
@@ -129,6 +139,8 @@ export default async function PathDetailPage({ params }: PageProps) {
         >
           ← All Learning Paths
         </Link>
+      </div>
+    </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { tools } from "@/lib/tools";
+import { tutorials } from "@/lib/tutorials";
 
 // ─── Tool URL helpers ────────────────────────────────────────────────────────
 
@@ -205,10 +206,31 @@ export function getAllNavSections(): NavSection[] {
   return [...tutorialNavSections, ...toolNavSections];
 }
 
-/** Build tutorial nav items — stub for client-side use (individual tutorials resolved server-side) */
+/** Build tutorial nav items from the static tutorials array using keyword matching */
 export function getTutorialNavItems(sectionSlug: string): NavItem[] {
-  // Returns a single "Browse" link per section; server components can enrich this.
-  return [{ title: `Browse ${tutorialNavSections.find((s) => s.slug === sectionSlug)?.title ?? sectionSlug}`, href: "/tutorials/" }];
+  const keywords = tutorialCategoryMapping[sectionSlug] ?? [];
+  const section = tutorialNavSections.find((s) => s.slug === sectionSlug);
+
+  const matched = tutorials
+    .filter((t) => {
+      const haystack = `${t.title} ${t.description} ${t.keywords.join(" ")}`.toLowerCase();
+      return keywords.some((kw) => haystack.includes(kw));
+    })
+    .slice(0, 8)
+    .map((t) => ({
+      title: t.title,
+      href: `/tutorials/${t.slug}/`,
+      badge: t.difficulty,
+    }));
+
+  if (matched.length === 0) {
+    return [{ title: `Browse ${section?.title ?? sectionSlug}`, href: "/tutorials/" }];
+  }
+
+  return [
+    ...matched,
+    { title: "Browse all tutorials →", href: "/tutorials/" },
+  ];
 }
 
 // ─── Breadcrumb helpers ───────────────────────────────────────────────────────
