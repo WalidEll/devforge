@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       "Free online developer tools and IT tutorials. No signup required.",
   },
   alternates: {
-    canonical: "/",
+    canonical: absoluteUrl("/"),
   },
   robots: {
     index: true,
@@ -68,6 +68,7 @@ export default function RootLayout({
     >
       <head>
         <meta name="google-adsense-account" content="ca-pub-2011454284047011" />
+        <meta name="msvalidate.01" content="A29B579C5E1DB36AACE94D9DF165393E" />
         {/* Request non-personalized ads before AdSense loads to minimize third-party cookies */}
         <script
           dangerouslySetInnerHTML={{
