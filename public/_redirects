@@ -48,8 +48,10 @@
 /hash-generator/ /tools/encoders/hash-generator/ 301
 /cert-details-viewer /tools/encoders/cert-details-viewer/ 301
 /cert-details-viewer/ /tools/encoders/cert-details-viewer/ 301
-/password-generator /tools/encoders/password-generator/ 301
-/password-generator/ /tools/encoders/password-generator/ 301
+/password-generator /tools/generators/password-generator/ 301
+/password-generator/ /tools/generators/password-generator/ 301
+/tools/encoders/password-generator /tools/generators/password-generator/ 301
+/tools/encoders/password-generator/ /tools/generators/password-generator/ 301
 
 # generators
 /cron-expression-generator /tools/generators/cron-expression-generator/ 301

@@ -1,7 +1,7 @@
 ---
 title: "Subnetting and CIDR Planning in Google Cloud"
 slug: "subnetting-and-cidr-planning-in-google-cloud"
-description: "Learn CIDR, subnet sizing, RFC1918 address planning, GKE secondary ranges, and Shared VPC design with practical Google Cloud examples, tables, and Mermaid diagrams."
+description: "Learn CIDR, subnet sizing, RFC1918 planning, GKE secondary ranges, and Shared VPC design in Google Cloud with practical examples."
 category: "networking"
 difficulty: "intermediate"
 keywords:

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | DevForge",
   },
   description:
-    "Free online developer tools and IT tutorials. JSON formatter, Base64 encoder, JWT decoder, regex tester, UUID generator, and 30+ guides on networking, security, DevOps, and more. No signup required.",
+    "Free cloud engineering tutorials and browser-based developer tools for GCP, Kubernetes, Terraform, and DevOps. No signup required.",
   keywords:
     "developer tools, json formatter, base64 encode, jwt decoder, regex tester, uuid generator, online tools, free tools, developer tutorials, IT guides, devops tutorials",
   metadataBase: new URL(SITE_URL),

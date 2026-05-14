@@ -1,7 +1,7 @@
 ---
 title: "Designing Enterprise Networks with Shared VPC"
 slug: "designing-enterprise-networks-with-shared-vpc"
-description: "Learn how to design enterprise Google Cloud networks with Shared VPC, host and service projects, delegated IAM, centralized security, and multi-team cost control."
+description: "Learn how Shared VPC works in Google Cloud, including host and service projects, delegated IAM, and multi-team network design."
 category: "networking"
 difficulty: "intermediate"
 keywords:

@@ -1,7 +1,7 @@
 ---
 title: "Cloud NAT and Internet Access in GCP Explained"
 slug: "cloud-nat-and-internet-access-in-gcp-explained"
-description: "Learn how Cloud NAT gives private Google Cloud workloads secure outbound internet access, how NAT scales, and how to build production-ready egress designs with Terraform and gcloud."
+description: "Learn how Cloud NAT gives private Google Cloud workloads secure outbound internet access and how to build production-ready egress with Terraform."
 category: "networking"
 difficulty: "beginner"
 keywords:

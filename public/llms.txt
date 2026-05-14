@@ -31,8 +31,8 @@ Browse all tools: https://devforge.tools/tools/
 Categories:
 - Networking: https://devforge.tools/tools/networking/ — CIDR calculator, IPv4 subnet calculator, IPv4 range expander, IPv4 address converter, IPv6 ULA generator, MAC address lookup, MAC address generator, GCP virtual network planner
 - Formatters: https://devforge.tools/tools/formatters/ — JSON, XML, SQL, HTML, JavaScript, CSS, Markdown
-- Encoders & Decoders: https://devforge.tools/tools/encoders/ — Base64, URL, HTML entities, JWT decoder, hash generator, HMAC, password generator
-- Generators: https://devforge.tools/tools/generators/ — UUID, cron expression builder, lorem ipsum, QR code
+- Encoders & Decoders: https://devforge.tools/tools/encoders/ — Base64, URL, HTML entities, JWT decoder, hash generator, HMAC
+- Generators: https://devforge.tools/tools/generators/ — UUID, cron expression builder, lorem ipsum, QR code, password generator
 - Converters: https://devforge.tools/tools/converters/ — JSON↔CSV, JSON↔XML, YAML↔JSON, Unix timestamp, color converter, URL parser
 - Validators: https://devforge.tools/tools/validators/ — HTML validator, XPath tester, regex tester, credit card validator
 

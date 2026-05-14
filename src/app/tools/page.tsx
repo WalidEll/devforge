@@ -19,7 +19,7 @@ const categoryIcons: Record<ToolCategory, string> = {
 export const metadata: Metadata = {
   title: "Developer Tools — DevForge",
   description:
-    "Free online developer tools: JSON formatter, Base64 encoder, UUID generator, CIDR calculator, regex tester, and 40+ more. No signup, no tracking — runs in your browser.",
+    "Free browser-based developer tools for JSON, Base64, UUIDs, CIDR, regex, and more. No signup, no tracking, runs in your browser.",
   alternates: {
     canonical: absoluteUrl("/tools/"),
   },

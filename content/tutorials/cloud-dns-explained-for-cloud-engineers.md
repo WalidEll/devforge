@@ -1,7 +1,7 @@
 ---
 title: "Cloud DNS Explained for Cloud Engineers"
 slug: "cloud-dns-explained-for-cloud-engineers"
-description: "Learn DNS fundamentals, public and private Cloud DNS zones, split-horizon DNS, internal service discovery, and practical troubleshooting patterns in Google Cloud."
+description: "Learn DNS fundamentals, Cloud DNS public and private zones, split-horizon DNS, and practical troubleshooting in Google Cloud."
 category: "networking"
 difficulty: "beginner"
 keywords:

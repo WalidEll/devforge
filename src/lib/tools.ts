@@ -509,7 +509,7 @@ export const tools: Tool[] = [
     name: "GCP Virtual Network Planner",
     slug: "gcp-virtual-network-planner",
     description:
-      "Design, validate, and simulate Google Cloud VPC architectures in your browser. Model VPCs, subnets, VMs, firewalls, and Cloud NAT, then export Terraform, JSON, gcloud commands, and Markdown.",
+      "Design and simulate Google Cloud VPC architectures in your browser. Model subnets, VMs, firewalls, and Cloud NAT, then export Terraform and gcloud.",
     shortDescription: "Plan and simulate GCP networks",
     category: "networking",
     keywords: [

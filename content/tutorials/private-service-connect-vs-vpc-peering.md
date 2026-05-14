@@ -1,7 +1,7 @@
 ---
 title: "Private Service Connect vs VPC Peering"
 slug: "private-service-connect-vs-vpc-peering"
-description: "Learn when to use VPC Peering, Private Service Connect, Private Google Access, and private services access in Google Cloud, with producer-consumer examples and Terraform patterns."
+description: "Compare VPC Peering, Private Service Connect, Private Google Access, and private services access in Google Cloud with practical examples."
 category: "networking"
 difficulty: "intermediate"
 keywords:

@@ -1,7 +1,7 @@
 ---
 title: "Connecting On-Premise Infrastructure to GCP"
 slug: "connecting-on-premise-infrastructure-to-gcp"
-description: "Learn how to design hybrid connectivity between on-premises infrastructure and Google Cloud using Cloud VPN, Dedicated Interconnect, Partner Interconnect, and Cloud Router."
+description: "Learn hybrid connectivity between on-premises infrastructure and Google Cloud using Cloud VPN, Interconnect, and Cloud Router."
 category: "networking"
 difficulty: "intermediate"
 keywords:

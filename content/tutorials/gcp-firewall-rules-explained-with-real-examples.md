@@ -1,7 +1,7 @@
 ---
 title: "GCP Firewall Rules Explained with Real Examples"
 slug: "gcp-firewall-rules-explained-with-real-examples"
-description: "Learn how Google Cloud firewall rules are evaluated, how priorities and stateful behavior work, and how to build safer production firewall patterns with Terraform and gcloud."
+description: "Learn how Google Cloud firewall rules are evaluated, how priorities and stateful behavior work, and how to design safer production rules."
 category: "networking"
 difficulty: "intermediate"
 keywords:

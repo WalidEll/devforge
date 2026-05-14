@@ -1,7 +1,7 @@
 ---
 title: "Understanding GCP VPCs: The Complete Beginner Guide"
 slug: "gcp-vpc-beginner-guide"
-description: "Learn what a Google Cloud VPC is, why GCP networking feels different from AWS, how global VPC architecture works, and which core networking concepts every cloud engineer should know."
+description: "Learn how Google Cloud VPCs work, why they differ from AWS, and the core networking concepts every GCP engineer should understand."
 category: "networking"
 difficulty: "beginner"
 keywords:

@@ -28,11 +28,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!tutorial) return {};
 
   return {
-    title: `${tutorial.title} — DevForge Tutorial`,
+    title: tutorial.title,
     description: tutorial.description,
     keywords: tutorial.keywords.join(", "),
     openGraph: {
-      title: `${tutorial.title} — DevForge Tutorial`,
+      title: tutorial.title,
       description: tutorial.description,
       url: absoluteUrl(`/tutorials/${tutorial.slug}/`),
       siteName: "DevForge",
